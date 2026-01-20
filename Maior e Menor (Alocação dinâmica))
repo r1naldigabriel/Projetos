@@ -1,0 +1,18 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+  int *vet, maior = 0, menor = 1001;
+
+  vet = (int*) calloc(10, sizeof(int));
+
+  for(int i=0;i<10;i++){
+    scanf("%i", &vet[i]);
+    if(vet[i]>maior){
+        maior=vet[i];
+    }
+    if(vet[i]<menor){
+        menor=vet[i];
+    }
+  }
+    printf("%i %i", maior, menor);
+}

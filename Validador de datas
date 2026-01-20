@@ -1,32 +1,70 @@
 #include<stdio.h>
-
-int busca(int v[], int n, int chave){
-	int i;
-	for (i=0; i<n; i++) {
-		if(chave==v[i]){//busca o vetor que corresponda à chave;
-			return(i);
-		}
-	}
-	return(-1);
-}
-
 int main(){
-	int vet[5];
-	int indice,i, chave;
-	//Ler o vetor
-	printf("Digite 5 valores para ocuparem o vetor:\n");
-	for (i=0;i<5; i++) {
-		scanf("%d", &vet[i]);
-	}
-	//Ler a chave de pesquisa
-    printf("Agora digite qual valor quer procurar:\n");
-	scanf("%d", &chave);
-	indice=busca(vet, 5, chave);
-	if (indice==-1) {
-    printf("Valor %d nao encontrado no vetor\n", chave);
-	}
-	else{
-		printf("Valor %d encontrado no vetor na posicao %d\n", chave, indice+1);
-	}
-	return(0);
+    int d,m,a;
+    
+    scanf("%i %i %i",&d,&m,&a);
+    
+    if(m>12){
+        printf("DATA INVALIDA\n");
+    }
+    else{
+        if(a<1900 || a>2036){
+            printf("DATA FORA DO INTERVALO ESTIPULADO\n");
+        }
+        else{
+            if(d>31){
+                printf("DATA INVALIDA\n");
+            }
+            else{
+                if(a%4==0 && a%100!=0 && a%400==0){
+                    if((m==2 || m ==4 || m ==6 || m ==9 || m==11)){
+                        if((m==2 && d>29)){
+                            printf("DATA INVALIDA\n");
+                        }
+                        else{
+                            if(d>30){
+                                printf("DATA INVALIDA\n");
+                            }
+                            else{
+                                printf("%i/%i/%i\n",d,m,a);
+                                
+                            }
+                        }
+                    }
+                    if(m==1 || m==3 || m==5 || m == 7|| m==8 || m==10 || m==12){
+                        if(d>31){
+                            printf("DATA INVALIDA\n");
+                        }
+                        else{
+                            printf("%i/%i/%i\n",d,m,a);
+                        }
+                    }
+                }
+                else{
+                    if(m==2 || m==4 || m==6 || m==9 || m==11){
+                        if(m==2 && d>28){
+                            printf("DATA INVALIDA\n");
+                        }
+                        else{
+                            if(d>30){
+                                printf("DATA INVALIDA\n");
+                            }
+                            else{
+                                printf("%i/%i/%i\n",d,m,a);
+                            }
+                        }
+                    }
+                    if(m==1 || m==3 || m==5 || m==7 || m==8 || m==10 || m==12){
+                        if(d>31){
+                            printf("DATA INVALIDA\n");
+                        }
+                        else{
+                            printf("%i/%i/%i\n",d,m,a);
+                        }
+                    }
+                }
+                
+            }
+        }
+    }
 }

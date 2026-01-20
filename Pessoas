@@ -1,32 +1,57 @@
 #include<stdio.h>
+#include<string.h>
+typedef struct{
+    char nome[50];
+    float peso;
+    float altura;
+    float imc;
+}Pessoa;
 
-int busca(int v[], int n, int chave){
-	int i;
-	for (i=0; i<n; i++) {
-		if(chave==v[i]){//busca o vetor que corresponda à chave;
-			return(i);
-		}
-	}
-	return(-1);
+//inicia dados
+void inicia (Pessoa *pessoa, int casos){
+    for(int i=0;i<casos; i++){
+        strcpy(pessoa[i].nome, "NULL");
+        pessoa[i].peso=0;
+        pessoa[i].altura=0;
+        pessoa[i].imc=0;
+    }
 }
 
+//cadastra
+void cadastra(Pessoa *pessoa, int casos){
+    for(int i=0;i<casos;i++){
+        scanf("%[^\n]s",pessoa[i].nome);
+        
+        scanf("%f %f", &pessoa[i].peso, &pessoa[i].altura);
+        getchar();
+    }
+}
+
+//imc
+void imc(Pessoa *pessoa, int casos){
+    for(int i=0;i<casos;i++){
+        pessoa[i].imc = pessoa[i].peso/(pessoa[i].altura*pessoa[i].altura);
+    }   
+}
+
+//imprime
+void imprime(Pessoa *pessoa, int casos){
+    for(int i=0;i< casos; i++){
+        printf("%.2f ", pessoa[i].imc);
+    }
+}
+
+
 int main(){
-	int vet[5];
-	int indice,i, chave;
-	//Ler o vetor
-	printf("Digite 5 valores para ocuparem o vetor:\n");
-	for (i=0;i<5; i++) {
-		scanf("%d", &vet[i]);
-	}
-	//Ler a chave de pesquisa
-    printf("Agora digite qual valor quer procurar:\n");
-	scanf("%d", &chave);
-	indice=busca(vet, 5, chave);
-	if (indice==-1) {
-    printf("Valor %d nao encontrado no vetor\n", chave);
-	}
-	else{
-		printf("Valor %d encontrado no vetor na posicao %d\n", chave, indice+1);
-	}
-	return(0);
+    int casos;
+    
+    scanf("%i", &casos);
+    getchar();
+    
+    Pessoa pessoa[casos];
+    inicia(pessoa,casos);
+    cadastra(pessoa,casos);
+    imc(pessoa,casos);
+    imprime(pessoa, casos);
+    
 }
